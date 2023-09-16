@@ -16,16 +16,35 @@ const rule = require("../../../lib/rules/absolute-relative-imports-checker"),
 // Tests
 //------------------------------------------------------------------------------
 
-const ruleTester = new RuleTester();
+const ruleTester = new RuleTester({
+    parserOptions: {
+        ecmaVersion: 6,
+        sourceType: 'module',
+    }
+});
 ruleTester.run("absolute-relative-imports-checker", rule, {
   valid: [
-    // give me some code that won't trigger a warning
-  ],
-
-  invalid: [
     {
-      code: "",
-      errors: [{ message: "Fill me in.", type: "Me too" }],
+        filename: "C:\\Users\\Alexandr\\OneDrive\\Документы\\Git\\react-blog\\src\\entities\\Article\\ui\\ArticleCard\\ArticleCard.tsx",
+        code: "import { Article, ArticleTextBlockType } from '../model/types/article';",
     },
   ],
+
+    invalid: [
+        {
+            filename: "C:\\Users\\Alexandr\\OneDrive\\Документы\\Git\\react-blog\\src\\entities\\Article\\ui\\ArticleCard\\ArticleCard.tsx",
+            code: "import { Article, ArticleTextBlockType } from 'entries/ArticleCard/model/types/article';",
+            errors: [{ message: "Import from the same slice should be relative" }],
+        },
+        {
+            filename: "C:\\Users\\Alexandr\\OneDrive\\Документы\\Git\\react-blog\\src\\entities\\Article\\ui\\ArticleCard\\ArticleCard.tsx",
+            code: "import { Article, ArticleTextBlockType } from '@/entries/ArticleCard/model/types/article';",
+            errors: [{ message: "Import from the same slice should be relative" }],
+            options: [
+                {
+                    alias: '@',
+                }
+            ]
+        },
+    ],
 });
