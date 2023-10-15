@@ -45,4 +45,8 @@ Then configure the rules you want to use under the rules section.
 TODO: Run eslint-doc-generator to generate the rules list.
 <!-- end auto-generated rules list -->
 
+### Add new rule
 
+`npm i -g yo`
+`npm i -g generator-eslint`
+`yo eslint:rule`
