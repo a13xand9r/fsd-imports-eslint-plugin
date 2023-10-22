@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-fsd-imports-plugin",
-  "version": "0.0.6",
+  "version": "0.0.8",
   "description": "plugin for working in feature sliced design arcitechture",
   "keywords": [
     "eslint",
